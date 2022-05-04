@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="shared_pref">my_share_pref_weather</string>
+    <!--    shared_pref-->
+    <string name="lat">lat</string>
+    <!--    shared_pref-->
+    <string name="location">location</string>
+    <!--    shared_pref-->
+    <string name="lon">lon</string>
+    <!--    shared_pref-->
+    <string name="timeZone">timeZone</string>
+    <!--    shared_pref-->
+    <string name="unitsSetting">units</string>
+    <!--    shared_pref-->
+    <string name="languageSetting">language</string>
+    <!--    shared_pref-->
 </resources>
