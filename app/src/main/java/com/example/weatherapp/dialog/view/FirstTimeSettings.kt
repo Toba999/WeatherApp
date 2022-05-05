@@ -21,7 +21,7 @@ import com.example.weatherapp.utility.getSharedPreferences
 class FirstTimeSettings : DialogFragment() {
     private var language: String? = null
     private val viewModel: DialogSettingViewModel by viewModels {
-        DialogSettingViewModelFactory(MyLocationProvider(this))
+        DialogSettingViewModelFactory(MyLocationProvider(this.requireActivity()))
     }
     private var _binding: FirstTimeSettingsBinding? = null
     private val binding get() = _binding!!

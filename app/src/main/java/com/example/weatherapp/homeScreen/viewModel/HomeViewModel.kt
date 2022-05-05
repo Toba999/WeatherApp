@@ -13,13 +13,12 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel (
     private val repository: RepositoryInterface,
-    private val myLocationProvider: MyLocationProvider
-) : ViewModel() {
+    private val myLocationProvider: MyLocationProvider) : ViewModel() {
 
     private val _openWeatherAPI = MutableLiveData<OpenWeatherApi>()
     val openWeatherAPI: LiveData<OpenWeatherApi> = _openWeatherAPI
 
-    private fun getDataFromDatabase() {
+    fun getDataFromDatabase() {
         viewModelScope.launch(Dispatchers.IO) {
             _openWeatherAPI.postValue(
                 repository.getCurrentWeatherFromLocalDataSource()

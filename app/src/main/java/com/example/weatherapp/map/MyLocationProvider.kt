@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -17,38 +18,40 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.startActivity
 
-class MyLocationProvider(private val fragment: Fragment) {
+
+class MyLocationProvider(private val activity: Activity) {
     private var myLocationList = ArrayList<Double>()
-    private var fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(fragment.requireContext())
+    private var fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity.applicationContext)
 
     fun checkPermission(): Boolean {
-        return (ContextCompat.checkSelfPermission(fragment.requireContext(),
+        return (ContextCompat.checkSelfPermission(activity.applicationContext,
             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(fragment.requireContext(),
+                && ContextCompat.checkSelfPermission(activity.applicationContext,
             Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
     }
 
     private fun requestPermission() {
-        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(activity.applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getFreshLocation()
+        }else{
+            ActivityCompat.requestPermissions(
+                activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+        }
     }
 
     // for get last location
     fun isLocationEnabled(): Boolean {
         val locationManager =
-            fragment.requireActivity().application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            activity.application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
     }
 
-    private val requestPermissionLauncher: ActivityResultLauncher<String> =
-        fragment.registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                getFreshLocation()
-            } else {
-                denyPermission.postValue("denied")
-            }
-        }
 
     fun getFreshLocation() {
         val locationRequest = LocationRequest.create()
@@ -93,7 +96,7 @@ class MyLocationProvider(private val fragment: Fragment) {
 
     private fun enableLocationSetting() {
         val settingIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-        fragment.startActivity(settingIntent)
+        activity.startActivity(settingIntent)
     }
 
     private fun stopLocationUpdates() {

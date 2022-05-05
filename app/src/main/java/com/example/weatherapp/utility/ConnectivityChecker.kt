@@ -10,10 +10,7 @@ class ConnectivityChecker : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (connectivityReceiverListener != null) {
             connectivityReceiverListener!!.onNetworkConnectionChanged(
-                isConnectedOrConnecting(
-                    context
-                )
-            )
+                isConnectedOrConnecting(context))
         }
     }
 

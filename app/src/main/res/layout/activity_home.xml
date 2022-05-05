@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="72dp"
                 android:text="Cairo"
                 android:textColor="@color/white"
                 android:textSize="34sp"
@@ -100,9 +100,9 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
+                android:layout_marginStart="80dp"
                 android:layout_marginTop="16dp"
-                android:text="30 Apr Sat"
+                android:text="30 Apr "
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,12 +112,12 @@
                 android:id="@+id/tvMainTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="34°C/16°C"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/tvDate"
+                app:layout_constraintStart_toEndOf="@+id/tv_day"
                 app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -280,7 +280,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_uv" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tvPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -302,6 +302,18 @@
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/tv_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Saturday"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/tvDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

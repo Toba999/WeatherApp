@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent">
+            android:background="@color/sky">
 
             <TextView
                 android:id="@+id/tv_vert_date"
@@ -29,7 +28,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="Today"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,12 +37,12 @@
                 android:id="@+id/tv_vert_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="90dp"
                 android:text="Sunny"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_vert_image"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -51,10 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:text="34/16°C"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,10 +61,13 @@
                 android:id="@+id/iv_vert_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="85dp"
-                android:layout_marginTop="9dp"
-                app:layout_constraintStart_toEndOf="@+id/tv_vert_date"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginBottom="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/icon_02d" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
