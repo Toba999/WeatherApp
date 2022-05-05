@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.2169230769230769" />
         <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/drawable/ic_breezy.xml" value="0.2169230769230769" />
-        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/activity_main.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/drawable/round_corner.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/first_time_settings.xml" value="0.33" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/horiz_row.xml" value="0.4083333333333333" />
+        <entry key="..\:/Users/ElHandaSia/AndroidStudioProjects/WeatherApp2/app/src/main/res/layout/vert_row.xml" value="0.33" />
       </map>
     </option>
   </component>

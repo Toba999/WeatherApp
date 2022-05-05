@@ -20,8 +20,7 @@ import com.google.android.gms.location.LocationServices
 
 class MyLocationProvider(private val fragment: Fragment) {
     private var myLocationList = ArrayList<Double>()
-    private var fusedLocationProviderClient =
-        LocationServices.getFusedLocationProviderClient(Activity())
+    private var fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(fragment.requireContext())
 
     fun checkPermission(): Boolean {
         return (ContextCompat.checkSelfPermission(fragment.requireContext(),

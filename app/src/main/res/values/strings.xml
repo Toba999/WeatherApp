@@ -13,5 +13,18 @@
     <string name="unitsSetting">units</string>
     <!--    shared_pref-->
     <string name="languageSetting">language</string>
+    <string name="weather_details">Weather Details</string>
+    <string name="air_pressure">Air Pressure</string>
+    <string name="clouds">Clouds</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="uv">UV</string>
+    <string name="humidity">Humidity</string>
+    <string name="apparent_temp">Apparent Temp</string>
+    <string name="map">Map</string>
+    <string name="gps">GPS</string>
+    <string name="location_text">Location</string>
+    <string name="initial_setting">First Time Settings</string>
+    <string name="btn_ok">OK</string>
+    <string name="isMap">isMap</string>
     <!--    shared_pref-->
 </resources>
