@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الطقس</string>
+    <string name="shared_pref">my_share_pref_weather</string>
+    <!--    shared_pref-->
+    <string name="lat">lat</string>
+    <!--    shared_pref-->
+    <string name="location">location</string>
+    <!--    shared_pref-->
+    <string name="lon">lon</string>
+    <!--    shared_pref-->
+    <string name="timeZone">timeZone</string>
+    <!--    shared_pref-->
+    <string name="unitsSetting">units</string>
+    <!--    shared_pref-->
+    <string name="isMap">isMap</string>
+    <!--    shared_pref-->
+    <string name="languageSetting">language</string>
+    <!--    shared_pref-->
+
+
+    <string name="weather_details">تفاصيل الطقس</string>
+    <string name="air_pressure">ضغط الجو</string>
+    <string name="clouds">السحب</string>
+    <string name="wind_speed">سرعة الرياح</string>
+    <string name="uv">الاشعة فوق البنفسجية</string>
+    <string name="humidity">الرطوبة</string>
+    <string name="apparent_temp">درجة الحرارة الظاهرة</string>
+    <string name="map">الخريطة</string>
+    <string name="gps">GPS</string>
+    <string name="location_text">الموقع</string>
+    <string name="initial_setting">اعدادات أولية</string>
+    <string name="btn_ok">حسنا</string>
+    <string name="settings">الاعدادات</string>
+    <string name="favourites">المقضلة</string>
+    <string name="alarm">التنبيهات</string>
+    <string name="language">اللغة</string>
+    <string name="arabic">العربية</string>
+    <string name="english">الانجليزية</string>
+    <string name="c_with_wind_speed_m_sec">سيلزيوس وسرعة الرياح متر/ثانية</string>
+    <string name="f_with_wind_speed_mile_hr">فهرنهايت و سرعووالرياح ميل/ساعة</string>
+    <string name="k_with_wind_speed_m_sec">كيلفن وسرعة الرياح متر/ثانية</string>
+    <string name="save">حفظ</string>
+    <string name="no">لا</string>
+    <string name="yes">نعم</string>
+    <string name="map_dialog_title">هل تريد تغيير مكانك علي الخريطة ؟</string>
+</resources>

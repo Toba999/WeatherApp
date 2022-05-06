@@ -27,98 +27,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="72dp"
-                android:text="Cairo"
+                android:layout_marginTop="60dp"
                 android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btnFavCities"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:src="@drawable/ic_baseline_location_city_24"
-                app:layout_constraintEnd_toStartOf="@+id/btnMenu"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
                 android:id="@+id/btnMenu"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
+                android:onClick="menuAction"
                 android:src="@drawable/dot_menu"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="OnClick,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/tvTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="156dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginBottom="24dp"
-                android:text="30"
+                android:layout_marginStart="122dp"
+                android:layout_marginTop="120dp"
                 android:textColor="@color/white"
                 android:textSize="70sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/tvUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="160dp"
-                android:layout_marginBottom="24dp"
-                android:text="°C"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvTemp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="3dp"
-                android:text="Sunny"
+                android:layout_marginTop="12dp"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tvTemp"
-                app:layout_constraintTop_toBottomOf="@+id/tvUnit" />
+                app:layout_constraintStart_toStartOf="@+id/tvTemp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
 
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="110dp"
                 android:layout_marginTop="16dp"
-                android:text="30 Apr "
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
-
-            <TextView
-                android:id="@+id/tvMainTemp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="34°C/16°C"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_day"
-                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+                app:layout_constraintTop_toBottomOf="@+id/tvState" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_horiz_hour"
@@ -137,7 +94,7 @@
                 android:id="@+id/rv_vert_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="40dp"
                 android:text="@string/uv"
                 android:textColor="@color/white"
                 android:textSize="16sp"
@@ -224,6 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="Strong"
                 android:textColor="@color/white"
                 android:textSize="34sp"
@@ -235,7 +193,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/wind_speed"
                 android:textColor="@color/white"
@@ -259,7 +217,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/clouds"
                 android:textColor="@color/white"
@@ -285,9 +243,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="12dp"
+                android:layout_marginBottom="74dp"
                 android:text="1010 hPA"
                 android:textColor="@color/white"
                 android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -295,25 +255,25 @@
                 android:id="@+id/tv_cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="57dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="74dp"
                 android:text="12%"
                 android:textColor="@color/white"
-                android:textSize="34sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <TextView
                 android:id="@+id/tv_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Saturday"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/tvDate"
-                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+                app:layout_constraintTop_toBottomOf="@+id/tvState" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

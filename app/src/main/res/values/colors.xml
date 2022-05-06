@@ -9,7 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="sky">#4576FF</color>
-
-
+    <color name="cardColor">#1f2f3f</color>
 
 </resources>

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -78,13 +79,22 @@ class MyLocationProvider(private val activity: Activity) {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             super.onLocationResult(locationResult)
-            val location = locationResult.lastLocation
-            myLocationList.apply {
-                add(location.latitude)
-                add(location.longitude)
+            val locationList = locationResult.locations
+            if (locationList.isNotEmpty()) {
+                //The last location in the list is the newest
+                val location = locationList.last()
+                myLocationList.apply {
+                    add(location.latitude)
+                    add(location.longitude)
+                }
+                _locationList.postValue(myLocationList)
+                stopLocationUpdates()
+                Log.i(
+                    "MapsActivity",
+                    "Location: " + location.getLatitude() + " " + location.getLongitude()
+                )
             }
-            _locationList.postValue(myLocationList)
-            stopLocationUpdates()
+
         }
     }
 

@@ -13,6 +13,11 @@
     <string name="unitsSetting">units</string>
     <!--    shared_pref-->
     <string name="languageSetting">language</string>
+    <!--    shared_pref-->
+    <string name="isMap">isMap</string>
+    <!--    shared_pref-->
+
+
     <string name="weather_details">Weather Details</string>
     <string name="air_pressure">Air Pressure</string>
     <string name="clouds">Clouds</string>
@@ -25,6 +30,18 @@
     <string name="location_text">Location</string>
     <string name="initial_setting">First Time Settings</string>
     <string name="btn_ok">OK</string>
-    <string name="isMap">isMap</string>
+    <string name="settings">Settings</string>
+    <string name="favourites">Favourites</string>
+    <string name="alarm">Alarm</string>
+    <string name="language">Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="c_with_wind_speed_m_sec">C° with wind speed m/sec</string>
+    <string name="f_with_wind_speed_mile_hr">F° with wind speed mile/hr</string>
+    <string name="k_with_wind_speed_m_sec">K° with wind speed m/sec</string>
+    <string name="save">Save</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="map_dialog_title">Do you want to change your location on map ?</string>
     <!--    shared_pref-->
 </resources>

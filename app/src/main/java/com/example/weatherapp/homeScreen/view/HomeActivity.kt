@@ -1,10 +1,18 @@
 package com.example.weatherapp.homeScreen.view
 
+import android.app.Dialog
+import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +25,7 @@ import com.example.weatherapp.model.Daily
 import com.example.weatherapp.model.Hourly
 import com.example.weatherapp.model.OpenWeatherApi
 import com.example.weatherapp.model.Repository
+import com.example.weatherapp.settingsScreen.SettingsActivity
 import com.example.weatherapp.utility.*
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -36,11 +45,16 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     private var flagNoConnection: Boolean = false
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
+    private lateinit var dialog: Dialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dialog = ProgressDialog.setProgressDialog(this, "Loading..")
+        dialog.show()
+
         ConnectivityChecker.connectivityReceiverListener = this
 
         viewModelFactory = HomeViewModelFactory(
@@ -54,6 +68,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                 if (!isSharedPreferencesLatAndLongNull(this)) {
                     setValuesFromSharedPreferences()
                     try {
+
                         viewModel.getDataFromRemoteToLocal(
                             "$latitude",
                             "$longitude",
@@ -101,13 +116,8 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                 latitude = it[0]
                 longitude = it[1]
                 val local = getCurrentLocale(this)
-                language = getSharedPreferences(this).getString(
-                    getString(R.string.languageSetting), local?.language
-                )!!
-                units = getSharedPreferences(this).getString(
-                    getString(R.string.unitsSetting),
-                    "metric"
-                )!!
+                language = getSharedPreferences(this).getString(getString(R.string.languageSetting), local?.language)!!
+                units = getSharedPreferences(this).getString(getString(R.string.unitsSetting), "metric")!!
                 try {
                     viewModel.getDataFromRemoteToLocal(
                         "$latitude",
@@ -139,10 +149,37 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
             }
         }
 
-        binding.btnMenu.setOnClickListener {
-            //Todo menu
-        }
     }
+
+    private fun setLocale(lang: String) {
+        val myLocale = Locale(lang)
+        Locale.setDefault(myLocale)
+        val res: Resources = resources
+        val dm: DisplayMetrics = res.displayMetrics
+        val conf: Configuration = res.configuration
+        conf.locale = myLocale
+        conf.setLayoutDirection(myLocale)
+        res.updateConfiguration(conf, dm)
+    }
+
+    fun menuAction(view : View){
+        val popupMenu: PopupMenu = PopupMenu(this,view)
+        popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.setting_item ->
+                    startActivity(Intent(this,SettingsActivity::class.java))
+                R.id.favourite_item ->
+                    Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                R.id.alarm_item ->
+                    Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+
 
     private fun getIsMap(): Boolean {
         return getSharedPreferences(this).getBoolean(getString(R.string.isMap), false)
@@ -173,6 +210,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     }
 
     private fun setData(model: OpenWeatherApi) {
+        dialog.dismiss()
         val weather = model.current.weather[0]
         binding.apply {
             tvDate.text = convertCalenderToDayString(Calendar.getInstance(), language)
@@ -273,7 +311,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
 
     private fun bindArabicUnits(model: OpenWeatherApi) {
         binding.apply {
-            tvMainTemp.text =
+            tvTemp.text =
                 convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
             tvHuumidity.text = convertNumbersToArabic(model.current.humidity)
                 .plus("٪")
@@ -284,12 +322,14 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
             tvUv.text = convertNumbersToArabic(model.current.uvi.toInt())
             tvWind.text =
                 convertNumbersToArabic(model.current.windSpeed).plus(windSpeedUnit)
+            tvAppaTemp.text=convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
         }
     }
 
     private fun bindEnglishUnits(model: OpenWeatherApi) {
         binding.apply {
-            tvMainTemp.text = model.current.temp.toInt().toString().plus(temperatureUnit)
+            tvAppaTemp.text = model.current.temp.toInt().toString().plus(temperatureUnit)
+            tvTemp.text = model.current.temp.toInt().toString().plus(temperatureUnit)
             tvHuumidity.text = model.current.humidity.toString().plus("%")
             tvPressure.text = model.current.pressure.toString().plus(" hPa")
             tvCloud.text = model.current.clouds.toString().plus("%")
@@ -297,5 +337,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
             tvWind.text = model.current.windSpeed.toString().plus(windSpeedUnit)
         }
     }
+
+
 
 }
