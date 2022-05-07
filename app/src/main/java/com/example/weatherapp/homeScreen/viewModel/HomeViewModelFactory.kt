@@ -2,7 +2,7 @@ package com.example.weatherapp.homeScreen.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.map.MyLocationProvider
+import com.example.weatherapp.model.MyLocationProvider
 import com.example.weatherapp.model.RepositoryInterface
 
 class HomeViewModelFactory (private val repository: RepositoryInterface,

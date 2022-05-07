@@ -2,7 +2,7 @@ package com.example.weatherapp.dialog.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.map.MyLocationProvider
+import com.example.weatherapp.model.MyLocationProvider
 
 class DialogSettingViewModelFactory (private val myLocationProvider: MyLocationProvider) :
     ViewModelProvider.Factory {

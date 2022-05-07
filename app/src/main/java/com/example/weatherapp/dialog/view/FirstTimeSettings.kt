@@ -14,7 +14,7 @@ import com.example.weatherapp.databinding.FirstTimeSettingsBinding
 import com.example.weatherapp.dialog.viewModel.DialogSettingViewModel
 import com.example.weatherapp.dialog.viewModel.DialogSettingViewModelFactory
 import com.example.weatherapp.homeScreen.view.HomeActivity
-import com.example.weatherapp.map.MyLocationProvider
+import com.example.weatherapp.model.MyLocationProvider
 import com.example.weatherapp.utility.getCurrentLocale
 import com.example.weatherapp.utility.getSharedPreferences
 

@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivitySettingsBinding
 import com.example.weatherapp.homeScreen.view.HomeActivity
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {

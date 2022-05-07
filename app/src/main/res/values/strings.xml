@@ -45,5 +45,6 @@
     <string name="map_dialog_title">Do you want to change your location on map ?</string>
     <string name="units">Units</string>
     <string name="locationSetting">Location</string>
-    <!--    shared_pref-->
+    <string name="btn_Done">Done</string>
+    <string name="empty_List">Empty List</string>
 </resources>

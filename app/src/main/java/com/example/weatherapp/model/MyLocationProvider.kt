@@ -1,4 +1,4 @@
-package com.example.weatherapp.map
+package com.example.weatherapp.model
 
 import android.Manifest
 import android.app.Activity
@@ -9,19 +9,13 @@ import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.startActivity
 
 
 class MyLocationProvider(private val activity: Activity) {

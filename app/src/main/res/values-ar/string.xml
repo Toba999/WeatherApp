@@ -46,6 +46,10 @@
     <string name="map_dialog_title">هل تريد تغيير مكانك علي الخريطة ؟</string>
     <string name="units">الوحدات</string>
     <string name="locationSetting">الموقع</string>
+    <string name="btn_Done">تم</string>
+    <string name="empty_List">القائمة خالية</string>
+
+
 
 
 </resources>

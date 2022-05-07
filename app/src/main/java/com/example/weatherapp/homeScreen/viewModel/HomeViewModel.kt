@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.map.MyLocationProvider
+import com.example.weatherapp.model.MyLocationProvider
 import com.example.weatherapp.model.OpenWeatherApi
 import com.example.weatherapp.model.RepositoryInterface
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel (
     private val repository: RepositoryInterface,
-    private val myLocationProvider: MyLocationProvider) : ViewModel() {
+    private val myLocationProvider: MyLocationProvider
+) : ViewModel() {
 
     private val _openWeatherAPI = MutableLiveData<OpenWeatherApi>()
     val openWeatherAPI: LiveData<OpenWeatherApi> = _openWeatherAPI

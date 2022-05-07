@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue_sky"
-    tools:context=".homeScreen.view.HomeActivity">
+    tools:context=".favouriteScreen.view.DisplayFavouriteActivity"
+    android:background="@drawable/blue_sky">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,15 +14,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvCity"
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="148dp"
+                android:text="@string/favourites"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCity_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -33,20 +44,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/btnMenu"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
-                android:onClick="menuAction"
-                android:src="@drawable/dot_menu"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="OnClick,SpeakableTextPresentCheck" />
-
             <TextView
-                android:id="@+id/tvTemp"
+                android:id="@+id/tvTemp_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="122dp"
@@ -57,17 +56,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvState"
+                android:id="@+id/tvState_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/tvTemp"
-                app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+                app:layout_constraintStart_toStartOf="@+id/tvTemp_fav"
+                app:layout_constraintTop_toBottomOf="@+id/tvTemp_fav" />
 
             <TextView
-                android:id="@+id/tvDate"
+                android:id="@+id/tvDate_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="110dp"
@@ -75,10 +74,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvState" />
+                app:layout_constraintTop_toBottomOf="@+id/tvState_fav" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_horiz_hour"
+                android:id="@+id/rv_horiz_hour_fav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -86,19 +85,19 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvDate_fav"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/horiz_row" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_vert_day"
+                android:id="@+id/rv_vert_day_fav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_horiz_hour"
+                app:layout_constraintTop_toBottomOf="@+id/rv_horiz_hour_fav"
                 tools:itemCount="5"
                 tools:listitem="@layout/vert_row" />
 
@@ -115,7 +114,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_vert_day" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_vert_day_fav" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -130,7 +129,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
-                android:id="@+id/tv_appa_temp"
+                android:id="@+id/tv_appa_temp_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -149,11 +148,11 @@
                 android:text="@string/humidity"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_huumidity"
+                app:layout_constraintStart_toStartOf="@+id/tv_huumidity_fav"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
-                android:id="@+id/tv_huumidity"
+                android:id="@+id/tv_huumidity_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -174,10 +173,10 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_huumidity" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_huumidity_fav" />
 
             <TextView
-                android:id="@+id/tv_uv"
+                android:id="@+id/tv_uv_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -199,10 +198,10 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_appa_temp" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_appa_temp_fav" />
 
             <TextView
-                android:id="@+id/tv_wind"
+                android:id="@+id/tv_wind_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -223,7 +222,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_wind" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_wind_fav" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -235,10 +234,10 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_uv" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_uv_fav" />
 
             <TextView
-                android:id="@+id/tvPressure"
+                android:id="@+id/tvPressure_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -252,7 +251,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
-                android:id="@+id/tv_cloud"
+                android:id="@+id/tv_cloud_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -265,15 +264,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <TextView
-                android:id="@+id/tv_day"
+                android:id="@+id/tv_day_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/tvDate"
-                app:layout_constraintTop_toBottomOf="@+id/tvState" />
+                app:layout_constraintStart_toEndOf="@+id/tvDate_fav"
+                app:layout_constraintTop_toBottomOf="@+id/tvState_fav" />
+
+            <ImageView
+                android:id="@+id/iv_back_df"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

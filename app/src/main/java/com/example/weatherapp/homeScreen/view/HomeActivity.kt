@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityHomeBinding
+import com.example.weatherapp.favouriteScreen.view.FavouriteActivity
 import com.example.weatherapp.homeScreen.viewModel.HomeViewModel
 import com.example.weatherapp.homeScreen.viewModel.HomeViewModelFactory
-import com.example.weatherapp.map.MyLocationProvider
+import com.example.weatherapp.map.view.MapActivity
+import com.example.weatherapp.model.MyLocationProvider
 import com.example.weatherapp.model.Daily
 import com.example.weatherapp.model.Hourly
 import com.example.weatherapp.model.OpenWeatherApi
@@ -58,7 +60,8 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
         ConnectivityChecker.connectivityReceiverListener = this
 
         viewModelFactory = HomeViewModelFactory(
-            Repository.getRepository(this), MyLocationProvider(this))
+            Repository.getRepository(this), MyLocationProvider(this)
+        )
         viewModel = ViewModelProvider(this,viewModelFactory)[HomeViewModel::class.java]
         this.registerReceiver(ConnectivityChecker(),
             IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
@@ -81,7 +84,9 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                         snackBar.show()
                     }
                 } else if (getIsMap()) {
-                    //Todo map screen
+                    val intent = Intent(this,MapActivity::class.java)
+                    intent.putExtra("isFavourite",false)
+                    startActivity(intent)
                 } else {
                     //dialog to get fresh location
                     val location = MyLocationProvider(this)
@@ -151,27 +156,17 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
 
     }
 
-    private fun setLocale(lang: String) {
-        val myLocale = Locale(lang)
-        Locale.setDefault(myLocale)
-        val res: Resources = resources
-        val dm: DisplayMetrics = res.displayMetrics
-        val conf: Configuration = res.configuration
-        conf.locale = myLocale
-        conf.setLayoutDirection(myLocale)
-        res.updateConfiguration(conf, dm)
-    }
-
     fun menuAction(view : View){
-        val popupMenu: PopupMenu = PopupMenu(this,view)
+        val popupMenu = PopupMenu(this,view)
         popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.setting_item ->
                     startActivity(Intent(this,SettingsActivity::class.java))
                 R.id.favourite_item ->
-                    Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,FavouriteActivity::class.java))
                 R.id.alarm_item ->
+                    //Todo navigate to alarm screen
                     Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
             }
             true
