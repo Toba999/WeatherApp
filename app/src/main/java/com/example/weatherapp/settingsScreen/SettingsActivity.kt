@@ -1,5 +1,6 @@
 package com.example.weatherapp.settingsScreen
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.example.weatherapp.utility.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.R
@@ -159,20 +161,27 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun changeMapLocationDialog() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(getString(R.string.map_dialog_title))
-            .setNegativeButton(getString(R.string.no)) { dialog, _ ->
-                setSettingsToSharedPreferences()
-                backToHomeScreen()
-                dialog.dismiss()
-            }
-            .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
-                resetLocationData()
-                setSettingsToSharedPreferences()
-                backToHomeScreen()
-                dialog.dismiss()
-            }
-            .show()
+         val builder = AlertDialog.Builder(this)
+        builder.setTitle("Alert")
+        builder.setMessage(getString(R.string.map_dialog_title))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        builder.setPositiveButton("Yes", DialogInterface.OnClickListener {
+                dialog, id ->
+            resetLocationData()
+            setSettingsToSharedPreferences()
+            backToHomeScreen()
+            dialog.cancel()
+        })
+        builder.setNegativeButton("No", DialogInterface.OnClickListener {
+                dialog, id ->
+            setSettingsToSharedPreferences()
+            backToHomeScreen()
+            dialog.cancel()
+        })
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 
 }
+

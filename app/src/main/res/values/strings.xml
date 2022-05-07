@@ -43,5 +43,7 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="map_dialog_title">Do you want to change your location on map ?</string>
+    <string name="units">Units</string>
+    <string name="locationSetting">Location</string>
     <!--    shared_pref-->
 </resources>

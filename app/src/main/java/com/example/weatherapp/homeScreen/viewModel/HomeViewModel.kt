@@ -40,7 +40,7 @@ class HomeViewModel (
                                 units
                             )
                     } catch (e: Exception) {
-                        throw Exception(e.message)
+                        result?.let { getDataFromDatabase() }
                     }
 
                 }

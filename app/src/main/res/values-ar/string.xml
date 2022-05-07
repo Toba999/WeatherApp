@@ -44,4 +44,8 @@
     <string name="no">لا</string>
     <string name="yes">نعم</string>
     <string name="map_dialog_title">هل تريد تغيير مكانك علي الخريطة ؟</string>
+    <string name="units">الوحدات</string>
+    <string name="locationSetting">الموقع</string>
+
+
 </resources>
