@@ -1,12 +1,17 @@
 package com.example.weatherapp.splashScreen
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import com.example.weatherapp.R
 import com.example.weatherapp.dialog.view.FirstTimeSettings
 import com.example.weatherapp.homeScreen.view.HomeActivity
+import com.example.weatherapp.utility.getCurrentLocale
 import kotlinx.coroutines.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +26,25 @@ class MainActivity : AppCompatActivity() {
         } else {
             val coroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
             coroutineScope.launch {
+                val localLang = getCurrentLocale(this@MainActivity)
+                val languageloc = com.example.weatherapp.utility.getSharedPreferences(this@MainActivity).getString(
+                    getString(R.string.languageSetting), localLang?.language) ?: localLang?.language
+                setLocale(languageloc!!)
                 delay(4000)
                 startMainScreen()
             }
         }
+    }
+
+    private fun setLocale(lang: String) {
+        val myLocale = Locale(lang)
+        Locale.setDefault(myLocale)
+        val res: Resources = resources
+        val dm: DisplayMetrics = res.displayMetrics
+        val conf: Configuration = res.configuration
+        conf.locale = myLocale
+        conf.setLayoutDirection(myLocale)
+        res.updateConfiguration(conf, dm)
     }
 
     override fun onBackPressed() {
