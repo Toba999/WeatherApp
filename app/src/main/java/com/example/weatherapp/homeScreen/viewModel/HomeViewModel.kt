@@ -35,11 +35,8 @@ class HomeViewModel (
                     try {
                         result =
                             repository.insertCurrentWeatherFromRemoteToLocal(
-                                lat,
-                                long,
-                                language,
-                                units
-                            )
+                                lat, long, language, units)
+
                     } catch (e: Exception) {
                         result?.let { getDataFromDatabase() }
                     }

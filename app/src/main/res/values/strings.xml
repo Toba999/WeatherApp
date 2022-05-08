@@ -47,4 +47,17 @@
     <string name="locationSetting">Location</string>
     <string name="btn_Done">Done</string>
     <string name="empty_List">Empty List</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="time">Time</string>
+    <string name="alarms">Alarm</string>
+    <string name="no_alerts_yet">No Alarms</string>
+    <string name="overlay_title">We Need Your Permission</string>
+    <string name="overlay_message">Need Your Permission to start alarms</string>
+    <string name="overlay_postive_button">OK</string>
+    <string name="overlay_negative_button">Cancel</string>
+    <string name="set_time">Set Time</string>
+    <string name="time_picker">Time Picker</string>
+    <string name="date_picker">Date Picker</string>
+
 </resources>

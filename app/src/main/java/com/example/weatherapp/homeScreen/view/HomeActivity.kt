@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
+import com.example.weatherapp.alarmScreen.view.AlarmActivity
 import com.example.weatherapp.databinding.ActivityHomeBinding
 import com.example.weatherapp.favouriteScreen.view.FavouriteActivity
 import com.example.weatherapp.homeScreen.viewModel.HomeViewModel
@@ -166,8 +167,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                 R.id.favourite_item ->
                     startActivity(Intent(this,FavouriteActivity::class.java))
                 R.id.alarm_item ->
-                    //Todo navigate to alarm screen
-                    Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, AlarmActivity::class.java))
             }
             true
         }

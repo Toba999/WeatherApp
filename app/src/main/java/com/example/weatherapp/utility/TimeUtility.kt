@@ -39,6 +39,11 @@ fun getIcon(imageString: String): Int {
     return imageInInteger
 }
 
+fun getDateMillis(date: String,language:String): Long {
+    val f = SimpleDateFormat("dd/MM/yyyy", Locale(language))
+    val d: Date = f.parse(date)
+    return d.time
+}
 fun convertLongToTime(time: Long, language: String): String {
     val date = Date(TimeUnit.SECONDS.toMillis(time))
     val format = SimpleDateFormat("h:mm a", Locale(language))

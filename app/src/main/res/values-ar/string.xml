@@ -48,6 +48,17 @@
     <string name="locationSetting">الموقع</string>
     <string name="btn_Done">تم</string>
     <string name="empty_List">القائمة خالية</string>
+    <string name="to">من</string>
+    <string name="from">إلي</string>
+    <string name="time">الوقت</string>
+    <string name="alarms">منبهات</string>
+    <string name="no_alerts_yet">لا ننبهات</string>
+    <string name="overlay_title">نحتاج إلي موافقتك</string>
+    <string name="overlay_message">طلب إذن</string>
+    <string name="overlay_postive_button">حسنا</string>
+    <string name="overlay_negative_button">إلغاء</string>
+    <string name="set_time">ضبط الوقت</string>
+
 
 
 

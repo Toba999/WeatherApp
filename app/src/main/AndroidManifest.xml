@@ -21,6 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp">
         <activity
+            android:name=".createAlarmScreen.view.CreateAlarmActivity"
+            android:exported="true" />
+        <activity
+            android:name=".alarmScreen.view.AlarmActivity"
+            android:exported="true" />
+        <activity
             android:name=".favouriteScreen.view.DisplayFavouriteActivity"
             android:exported="true" />
         <activity

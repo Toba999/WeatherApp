@@ -24,13 +24,8 @@ class DisplayFavouriteViewModel (private val repository: Repository) : ViewModel
         }
     }
 
-    fun updateWeather(
-        latitude: Double,
-        longitude: Double,
-        units: String,
-        language: String,
-        id: Int
-    ) {
+    fun updateWeather(latitude: Double, longitude: Double, units: String, language: String, id: Int)
+    {
         var result: OpenWeatherApi? = null
         val job = viewModelScope.launch(Dispatchers.IO) {
             result =

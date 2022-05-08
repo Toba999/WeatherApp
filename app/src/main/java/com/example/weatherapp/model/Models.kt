@@ -124,8 +124,7 @@ data class WeatherAlert(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     val id: Int? = null,
-    var startTime: Long,
-    var endTime: Long,
+    var time: Long,
     var startDate: Long,
     var endDate: Long
 )
