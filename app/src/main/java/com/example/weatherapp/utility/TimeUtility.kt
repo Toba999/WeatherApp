@@ -45,7 +45,7 @@ fun getDateMillis(date: String,language:String): Long {
     return d.time
 }
 fun convertLongToTime(time: Long, language: String): String {
-    val date = Date(TimeUnit.SECONDS.toMillis(time))
+    val date = Date(time-7200000)
     val format = SimpleDateFormat("h:mm a", Locale(language))
     return format.format(date)
 }

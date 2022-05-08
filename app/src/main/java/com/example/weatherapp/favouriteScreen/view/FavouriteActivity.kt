@@ -40,7 +40,9 @@ private lateinit var binding: ActivityFavouriteBinding
         viewModel.getFavorites()
 
         binding.btnAddFavourite.setOnClickListener {
-            startActivity(Intent(this, MapActivity::class.java))
+            val intent =Intent(this, MapActivity::class.java)
+            intent.putExtra(getString(R.string.isFavourite),true)
+            startActivity(intent)
         }
 
         binding.ivBackFavourite.setOnClickListener {

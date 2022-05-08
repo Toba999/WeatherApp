@@ -86,7 +86,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                     }
                 } else if (getIsMap()) {
                     val intent = Intent(this,MapActivity::class.java)
-                    intent.putExtra("isFavourite",false)
+                    intent.putExtra(getString(R.string.isFavourite),false)
                     startActivity(intent)
                 } else {
                     //dialog to get fresh location

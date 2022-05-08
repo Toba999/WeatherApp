@@ -83,10 +83,8 @@ class MyLocationProvider(private val activity: Activity) {
                 }
                 _locationList.postValue(myLocationList)
                 stopLocationUpdates()
-                Log.i(
-                    "MapsActivity",
-                    "Location: " + location.getLatitude() + " " + location.getLongitude()
-                )
+                Log.i("MapsActivity",
+                    "Location: " + location.getLatitude() + " " + location.getLongitude())
             }
 
         }

@@ -11,10 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class HomeViewModel (
-    private val repository: RepositoryInterface,
-    private val myLocationProvider: MyLocationProvider
-) : ViewModel() {
+class HomeViewModel (private val repository: RepositoryInterface,
+    private val myLocationProvider: MyLocationProvider) : ViewModel() {
 
     private val _openWeatherAPI = MutableLiveData<OpenWeatherApi>()
     val openWeatherAPI: LiveData<OpenWeatherApi> = _openWeatherAPI
@@ -30,8 +28,7 @@ class HomeViewModel (
     fun getDataFromRemoteToLocal(lat: String, long: String, language: String, units: String) {
         var result: OpenWeatherApi? = null
         viewModelScope.launch(Dispatchers.Main) {
-            val job =
-                viewModelScope.launch(Dispatchers.IO) {
+            val job = viewModelScope.launch(Dispatchers.IO) {
                     try {
                         result =
                             repository.insertCurrentWeatherFromRemoteToLocal(

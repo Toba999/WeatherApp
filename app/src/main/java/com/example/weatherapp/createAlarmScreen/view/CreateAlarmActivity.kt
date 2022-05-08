@@ -91,10 +91,8 @@ class CreateAlarmActivity : AppCompatActivity() {
         val rightNow = Calendar.getInstance()
         val currentHour = rightNow.get(Calendar.HOUR_OF_DAY)
         val currentMinute = rightNow.get(Calendar.MINUTE)
-        val listener: (TimePicker?, Int, Int) -> Unit =
-            { _: TimePicker?, hour: Int, minute: Int ->
-                time = TimeUnit.MINUTES.toSeconds(minute.toLong()) +
-                        TimeUnit.HOURS.toSeconds(hour.toLong()) - (3600L * 2)
+        val listener: (TimePicker?, Int, Int) -> Unit = { _: TimePicker?, hour: Int, minute: Int ->
+                time = (TimeUnit.MINUTES.toMillis(minute.toLong()) + TimeUnit.HOURS.toMillis(hour.toLong()))
                 Log.e("time",time.toString())
                 binding.timeCreate.text=convertLongToTime(time, language)
             }

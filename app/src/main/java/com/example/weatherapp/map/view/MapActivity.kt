@@ -36,7 +36,7 @@ class MapActivity : AppCompatActivity() {
         setContentView(binding.root)
         handleBackButton()
 
-        isFavorite = intent.getBooleanExtra("isFavorite",true)
+        isFavorite = intent.getBooleanExtra(getString(R.string.isFavourite),false)
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
@@ -69,14 +69,8 @@ class MapActivity : AppCompatActivity() {
 
 
     private fun navigateToFavoriteScreen(lat: Double, lon: Double) {
-        val language = getSharedPreferences(this).getString(
-            getString(R.string.languageSetting),
-            "en"
-        )
-        val units = getSharedPreferences(this).getString(
-            getString(R.string.unitsSetting),
-            "metric"
-        )
+        val language = getSharedPreferences(this).getString(getString(R.string.languageSetting), "en")
+        val units = getSharedPreferences(this).getString(getString(R.string.unitsSetting), "metric")
         try {
             viewModel.setFavorite("$lat", "$lon", language!!, units!!)
             startActivity(Intent(this, FavouriteActivity::class.java))
