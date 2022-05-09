@@ -130,7 +130,7 @@ class AlarmActivity : AppCompatActivity() {
                     startActivityForResult(intent, 1)
                     //It will call onActivityResult Function After you press Yes/No and go Back after giving permission
                     dialog.dismiss()
-                    navigateToCreateAlarmDialog()
+
                 }.setNegativeButton(
                     getString(R.string.overlay_negative_button)
                 ) { dialog: DialogInterface, _: Int ->

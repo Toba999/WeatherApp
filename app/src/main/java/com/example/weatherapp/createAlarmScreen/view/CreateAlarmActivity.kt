@@ -19,6 +19,7 @@ import com.example.weatherapp.model.Repository
 import com.example.weatherapp.model.WeatherAlert
 import com.example.weatherapp.utility.convertLongToDayDate
 import com.example.weatherapp.utility.convertLongToTime
+import com.example.weatherapp.workManager.MyPeriodicManager
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -65,7 +66,7 @@ class CreateAlarmActivity : AppCompatActivity() {
         }
 
         viewModel.id.observe(this) {
-           // setPeriodWorkManger(it)
+            setPeriodWorkManger(it)
             startActivity(Intent(this,AlarmActivity::class.java))
         }
     }
@@ -139,7 +140,7 @@ class CreateAlarmActivity : AppCompatActivity() {
     }
 
 
-/*
+
     private fun setPeriodWorkManger(id: Long) {
 
         val data = Data.Builder()
@@ -150,18 +151,15 @@ class CreateAlarmActivity : AppCompatActivity() {
             .build()
 
         val periodicWorkRequest = PeriodicWorkRequest.Builder(
-            AlertPeriodicWorkManger::class.java,
-            24, TimeUnit.HOURS
-        )
+            MyPeriodicManager::class.java, 24, TimeUnit.HOURS)
             .setConstraints(constraints)
             .setInputData(data.build())
             .build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-            "$id",
-            ExistingPeriodicWorkPolicy.REPLACE,
-            periodicWorkRequest
-        )
+            "$id", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest)
+        Log.e("Create alarm","setPeriodWorkManger")
+
     }
-*/
+
 }

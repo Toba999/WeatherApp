@@ -6,7 +6,9 @@ import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.Log
 import com.example.weatherapp.R
+import com.example.weatherapp.model.WeatherAlert
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +43,34 @@ fun getIcon(imageString: String): Int {
 
 fun getDateMillis(date: String,language:String): Long {
     val f = SimpleDateFormat("dd/MM/yyyy", Locale(language))
+    val d: Date = f.parse(date)
+    return d.time
+}
+
+ fun getCurrentTime(): Long {
+    val hour =
+        TimeUnit.HOURS.toMillis(Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toLong())
+    val minute =
+        TimeUnit.MINUTES.toMillis(Calendar.getInstance().get(Calendar.MINUTE).toLong())
+
+    return (hour + minute)
+}
+
+ fun checkTime(alert: WeatherAlert,context: Context): Boolean {
+    val year = Calendar.getInstance().get(Calendar.YEAR)
+    val month = Calendar.getInstance().get(Calendar.MONTH)
+    val day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+    val date = "$day/${month + 1}/$year"
+    val dayNow = getDateMillis(date,context)
+    return dayNow >= alert.startDate && dayNow <= alert.endDate
+}
+
+private fun getDateMillis(date: String,context: Context): Long {
+    val language = getSharedPreferences(context).getString(
+        context.getString(R.string.languageSetting),
+        getCurrentLocale(context)?.language
+    )
+    val f = SimpleDateFormat("dd/MM/yyyy", Locale(language!!))
     val d: Date = f.parse(date)
     return d.time
 }

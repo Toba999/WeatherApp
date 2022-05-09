@@ -22,22 +22,28 @@
         android:theme="@style/Theme.WeatherApp">
         <activity
             android:name=".createAlarmScreen.view.CreateAlarmActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".alarmScreen.view.AlarmActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".favouriteScreen.view.DisplayFavouriteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".favouriteScreen.view.FavouriteActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".map.view.MapActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".settingsScreen.SettingsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".homeScreen.view.HomeActivity"
             android:exported="true"
@@ -60,6 +66,10 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".workManager.AlertService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".splashScreen.MainActivity"
