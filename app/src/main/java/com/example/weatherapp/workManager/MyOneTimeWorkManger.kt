@@ -3,7 +3,6 @@ package com.example.weatherapp.workManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.Service.START_NOT_STICKY
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -13,17 +12,13 @@ import android.media.AudioAttributes
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
-import android.provider.Settings.Global.getString
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.startForegroundService
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.weatherapp.R
 import com.example.weatherapp.splashScreen.MainActivity
 import com.example.weatherapp.utility.getIcon
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -76,8 +71,6 @@ class MyOneTimeWorkManger (private val context: Context, workerParams: WorkerPar
                 Notification.BigTextStyle()
                     .bigText(description)
             )
-            .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
-            .setLights(Color.RED, 3000, 3000)
             .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.packageName + "/" + R.raw.notif_ring))
             .setAutoCancel(true)
         notificationManager?.notify(1234, builder.build())
@@ -86,10 +79,7 @@ class MyOneTimeWorkManger (private val context: Context, workerParams: WorkerPar
 
     private fun notificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name: CharSequence = channel_name
-            val description = channel_description
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("$CHANNEL_ID", name, importance)
+            val channel = NotificationChannel("$CHANNEL_ID", channel_name, NotificationManager.IMPORTANCE_DEFAULT)
             val sound =
                 Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.packageName + "/" + R.raw.notif_ring)
             val attributes = AudioAttributes.Builder()
@@ -97,7 +87,7 @@ class MyOneTimeWorkManger (private val context: Context, workerParams: WorkerPar
                 .build()
             channel.enableVibration(true)
             channel.setSound(sound, attributes)
-            channel.description = description
+            channel.description = channel_description
             notificationManager = context.getSystemService(NotificationManager::class.java)
             notificationManager?.createNotificationChannel(channel)
             Log.e("MyOneTimeWorkManger","notificationChannel")
