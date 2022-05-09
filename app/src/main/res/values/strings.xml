@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather App</string>
+    <string name="app_name">Shamooseh</string>
     <string name="shared_pref">my_share_pref_weather</string>
     <!--    shared_pref-->
     <string name="lat">lat</string>
@@ -16,6 +16,8 @@
     <!--    shared_pref-->
     <string name="isMap">isMap</string>
     <!--    shared_pref-->
+    <string name="isFavourite">isFavourite</string>
+
 
 
     <string name="weather_details">Weather Details</string>
@@ -59,6 +61,6 @@
     <string name="set_time">Set Time</string>
     <string name="time_picker">Time Picker</string>
     <string name="date_picker">Date Picker</string>
-    <string name="isFavourite">isFavourite</string>
+    <string name="shamooseh">Shamooseh</string>
 
 </resources>

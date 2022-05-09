@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">الطقس</string>
+    <string name="app_name">شموسه</string>
+
     <string name="shared_pref">my_share_pref_weather</string>
     <!--    shared_pref-->
     <string name="lat">lat</string>
@@ -17,6 +18,8 @@
     <!--    shared_pref-->
     <string name="languageSetting">language</string>
     <!--    shared_pref-->
+    <string name="isFavourite">isFavourite</string>
+
 
 
     <string name="weather_details">تفاصيل الطقس</string>
@@ -58,6 +61,9 @@
     <string name="overlay_postive_button">حسنا</string>
     <string name="overlay_negative_button">إلغاء</string>
     <string name="set_time">ضبط الوقت</string>
+    <string name="time_picker">اختار الوقت</string>
+    <string name="date_picker">اختار التاريخ</string>
+    <string name="shamooseh">شموسه</string>
 
 
 

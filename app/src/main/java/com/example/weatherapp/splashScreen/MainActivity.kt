@@ -12,11 +12,15 @@ import com.example.weatherapp.homeScreen.view.HomeActivity
 import com.example.weatherapp.utility.getCurrentLocale
 import kotlinx.coroutines.*
 import java.util.*
+import android.media.MediaPlayer
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
     private val parentJob = Job()
-
+    var mySong: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,7 +34,9 @@ class MainActivity : AppCompatActivity() {
                 val languageloc = com.example.weatherapp.utility.getSharedPreferences(this@MainActivity).getString(
                     getString(R.string.languageSetting), localLang?.language) ?: localLang?.language
                 setLocale(languageloc!!)
-                delay(4000)
+                mySong=MediaPlayer.create(this@MainActivity,R.raw.splash_ring)
+                mySong?.start();
+                delay(5000)
                 startMainScreen()
             }
         }
