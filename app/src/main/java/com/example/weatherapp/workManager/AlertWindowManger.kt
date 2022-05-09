@@ -51,7 +51,6 @@ class AlertWindowManger (
         binding?.btnOk?.text = context.getString(R.string.btn_ok)
         binding?.btnOk?.setOnClickListener {
             close()
-            stopMyService()
         }
     }
 
@@ -67,8 +66,6 @@ class AlertWindowManger (
         }
     }
 
-    private fun stopMyService() {
-        context.stopService(Intent(context, AlertService::class.java))
-    }
+
 
 }

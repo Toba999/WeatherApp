@@ -66,11 +66,6 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-        <service
-            android:name=".workManager.AlertService"
-            android:enabled="true"
-            android:exported="true" />
-
         <activity
             android:name=".splashScreen.MainActivity"
             android:exported="true"
