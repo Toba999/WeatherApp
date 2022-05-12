@@ -58,6 +58,7 @@ class ProgressDialog {
                 layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT
                 layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT
                 dialog.window?.attributes = layoutParams
+                dialog.setCancelable(false)
             }
             return dialog
         }
