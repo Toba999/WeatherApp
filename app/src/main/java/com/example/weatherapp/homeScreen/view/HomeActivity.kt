@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
     private lateinit var dialog: Dialog
-    val nigthTime =64800000
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
         dialog = ProgressDialog.setProgressDialog(this, "Loading..")
         dialog.show()
 
-        if(getCurrentTime()>nigthTime){
+        if(getCurrentTime() !in (morningTime + 1) until nightTime){
             binding.parentLayout.setBackgroundResource(R.drawable.night_sky)
         }
 

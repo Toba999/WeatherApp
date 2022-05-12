@@ -95,7 +95,7 @@ class CreateAlarmActivity : AppCompatActivity() {
         val listener: (TimePicker?, Int, Int) -> Unit = { _: TimePicker?, hour: Int, minute: Int ->
                 time = (TimeUnit.MINUTES.toMillis(minute.toLong()) + TimeUnit.HOURS.toMillis(hour.toLong()))
                 Log.e("time",time.toString())
-                binding.timeCreate.text=convertLongToTime(time, language)
+                binding.timeCreate.text= convertLongToTimePicker(time, language)
             }
 
         val timePickerDialog = TimePickerDialog(

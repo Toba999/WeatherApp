@@ -135,7 +135,6 @@ class AlarmActivity : AppCompatActivity() {
                     getString(R.string.overlay_negative_button)
                 ) { dialog: DialogInterface, _: Int ->
                     dialog.dismiss()
-                    navigateToCreateAlarmDialog()
                 }.show()
         }
     }

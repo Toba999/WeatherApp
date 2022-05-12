@@ -19,7 +19,7 @@ class CreateAlarmViewModel (private val repository: Repository) : ViewModel() {
             }
             job.join()
             if (response != null) {
-                _id.postValue(response!!)
+                _id.postValue(response?:0)
             }
         }
     }

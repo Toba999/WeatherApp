@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+const val nightTime =64800000
+const val morningTime =21600000
 
 fun getIcon(imageString: String): Int {
     val imageInInteger: Int
@@ -67,16 +69,21 @@ fun getDateMillis(date: String,language:String): Long {
 
 private fun getDateMillis(date: String,context: Context): Long {
     val language = getSharedPreferences(context).getString(
-        context.getString(R.string.languageSetting),
-        getCurrentLocale(context)?.language
-    )
+        context.getString(R.string.languageSetting), getCurrentLocale(context)?.language)
+
     val f = SimpleDateFormat("dd/MM/yyyy", Locale(language!!))
     val d: Date = f.parse(date)
     return d.time
 }
 fun convertLongToTime(time: Long, language: String): String {
+    val date = Date(time*1000)
+    val format = SimpleDateFormat("hh:mm aa", Locale(language))
+    return format.format(date)
+}
+
+fun convertLongToTimePicker(time: Long, language: String): String {
     val date = Date(time-7200000)
-    val format = SimpleDateFormat("h:mm a", Locale(language))
+    val format = SimpleDateFormat("h:mm aa", Locale(language))
     return format.format(date)
 }
 

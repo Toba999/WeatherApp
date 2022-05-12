@@ -45,7 +45,7 @@ class DisplayFavouriteActivity : AppCompatActivity() {
     private var language: String = "en"
     private var units: String = "metric"
     private lateinit var dialog: Dialog
-    val nigthTime =64800000
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,9 +54,11 @@ class DisplayFavouriteActivity : AppCompatActivity() {
         setContentView(binding.root)
         dialog = ProgressDialog.setProgressDialog(this, "Loading..")
         dialog.show()
-        if(getCurrentTime()>nigthTime){
+
+        if(getCurrentTime() !in (morningTime + 1) until nightTime){
             binding.favParent.setBackgroundResource(R.drawable.night_sky)
         }
+
         handleBackButton()
         binding.ivBackDf.setOnClickListener {
             startActivity(Intent(this,FavouriteActivity::class.java))
