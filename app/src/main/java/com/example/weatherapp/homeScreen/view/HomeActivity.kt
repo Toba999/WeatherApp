@@ -130,12 +130,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                 language = getSharedPreferences(this).getString(getString(R.string.languageSetting), local?.language)!!
                 units = getSharedPreferences(this).getString(getString(R.string.unitsSetting), "metric")!!
                 try {
-                    viewModel.getDataFromRemoteToLocal(
-                        "$latitude",
-                        "$longitude",
-                        language,
-                        units
-                    )
+                    viewModel.getDataFromRemoteToLocal("$latitude", "$longitude", language, units)
                 } catch (e: Exception) {
                     val snackBar =
                         Snackbar.make(binding.root, "${e.message}", Snackbar.LENGTH_SHORT)
@@ -148,11 +143,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
             if (it != null) {
                 updateSharedPreferences(
                     this,
-                    it.lat,
-                    it.lon,
-                    getCityText(this, it.lat, it.lon, language),
-                    it.timezone
-                )
+                    it.lat, it.lon, getCityText(this, it.lat, it.lon, language), it.timezone)
                 setUnitSetting(units)
                 setData(it)
                 fetchTempPerTimeRecycler(it.hourly as ArrayList<Hourly>, temperatureUnit)
