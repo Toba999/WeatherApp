@@ -127,9 +127,8 @@ class SettingsActivity : AppCompatActivity() {
         getSharedPreferences(this).edit().apply {
             putString(getString(R.string.unitsSetting), newUnitSetting)
             putString(getString(R.string.languageSetting), newLanguageSetting)
-            if (newLocationSetting && !oldLocationSetting) {
-                resetLocationData()
-            } else if (oldLocationSetting && !newLocationSetting) {
+            if ((newLocationSetting && !oldLocationSetting)
+                ||(oldLocationSetting && !newLocationSetting)){
                 resetLocationData()
             }
             putBoolean(getString(R.string.isMap), newLocationSetting)

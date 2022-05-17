@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HorizRowBinding
 import com.example.weatherapp.model.Hourly
-import com.example.weatherapp.utility.convertLongToTime
-import com.example.weatherapp.utility.convertNumbersToArabic
-import com.example.weatherapp.utility.getIcon
-import com.example.weatherapp.utility.getSharedPreferences
+import com.example.weatherapp.utility.*
 
 class TempPerTimeAdapter(private val context: Context) :
     RecyclerView.Adapter<TempPerTimeAdapter.ViewHolder>() {
@@ -34,11 +31,12 @@ class TempPerTimeAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        language = getSharedPreferences(context).getString(
-            context.getString(
+        language = getSharedPreferences(context).getString(context.getString(
                 R.string.languageSetting
-            ), "en"
-        )!!
+            ), "en")!!
+        if(getCurrentTime() !in (morningTime + 1) until nightTime){
+            holder.binding.parentHoriz.setBackgroundResource(R.color.cardColor)
+        }
         val hour = hourly[position + 1]
         holder.binding.ivHorizImage.setImageResource(getIcon(hour.weather[0].icon))
         if (language == "ar") {
