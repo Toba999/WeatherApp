@@ -33,6 +33,7 @@ interface WeatherDao {
     @Query("select * from weather where id = :id")
     fun getFavoriteWeather(id: Int): OpenWeatherApi
 
+    //insert obj and return auto generated data base
     @Insert(onConflict = REPLACE)
     suspend fun insertAlert(alert: WeatherAlert): Long
 

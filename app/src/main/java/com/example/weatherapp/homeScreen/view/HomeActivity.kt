@@ -3,16 +3,12 @@ package com.example.weatherapp.homeScreen.view
 import android.app.Dialog
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Color
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +19,7 @@ import com.example.weatherapp.favouriteScreen.view.FavouriteActivity
 import com.example.weatherapp.homeScreen.viewModel.HomeViewModel
 import com.example.weatherapp.homeScreen.viewModel.HomeViewModelFactory
 import com.example.weatherapp.map.view.MapActivity
-import com.example.weatherapp.model.MyLocationProvider
+import com.example.weatherapp.model.WeatherLocationProvider
 import com.example.weatherapp.model.Daily
 import com.example.weatherapp.model.Hourly
 import com.example.weatherapp.model.OpenWeatherApi
@@ -66,7 +62,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
         ConnectivityChecker.connectivityReceiverListener = this
 
         viewModelFactory = HomeViewModelFactory(
-            Repository.getRepository(this), MyLocationProvider(this)
+            Repository.getRepository(this), WeatherLocationProvider(this)
         )
         viewModel = ViewModelProvider(this,viewModelFactory)[HomeViewModel::class.java]
         this.registerReceiver(ConnectivityChecker(),
@@ -95,7 +91,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
                     startActivity(intent)
                 } else {
                     //dialog to get fresh location
-                    val location = MyLocationProvider(this)
+                    val location = WeatherLocationProvider(this)
                     if (location.checkPermission() && location.isLocationEnabled()) {
                         viewModel.getFreshLocation()
                     }
@@ -159,7 +155,13 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.setting_item ->
-                    startActivity(Intent(this,SettingsActivity::class.java))
+                    if(flagNoConnection){
+                        val snackBar = Snackbar.make(binding.root, "You are offline", Snackbar.LENGTH_LONG)
+                        snackBar.view.setBackgroundColor(Color.RED)
+                        snackBar.show()
+                    }else{
+                        startActivity(Intent(this,SettingsActivity::class.java))
+                    }
                 R.id.favourite_item ->
                     startActivity(Intent(this,FavouriteActivity::class.java))
                 R.id.alarm_item ->

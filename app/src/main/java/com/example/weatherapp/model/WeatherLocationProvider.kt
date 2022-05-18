@@ -18,37 +18,15 @@ import com.google.android.gms.location.LocationServices
 import androidx.core.app.ActivityCompat
 
 
-class MyLocationProvider(private val activity: Activity) {
+class WeatherLocationProvider(private val activity: Activity) {
     private var myLocationList = ArrayList<Double>()
     private var fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity.applicationContext)
+    private var _locationList = MutableLiveData<ArrayList<Double>>()
+    val locationList = _locationList
+    private var _denyPermission = MutableLiveData<String>()
+    val denyPermission = _denyPermission
 
-    fun checkPermission(): Boolean {
-        return (ContextCompat.checkSelfPermission(activity.applicationContext,
-            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(activity.applicationContext,
-            Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-    }
-
-    private fun requestPermission() {
-        if (ContextCompat.checkSelfPermission(activity.applicationContext,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getFreshLocation()
-        }else{
-            ActivityCompat.requestPermissions(
-                activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
-        }
-    }
-
-    // for get last location
-    fun isLocationEnabled(): Boolean {
-        val locationManager =
-            activity.application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
-    }
-
-
-    fun getFreshLocation() {
+    fun getLocation() {
         val locationRequest = LocationRequest.create()
         locationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
         locationRequest.interval = 120000
@@ -70,6 +48,34 @@ class MyLocationProvider(private val activity: Activity) {
         }
     }
 
+    fun checkPermission(): Boolean {
+        return (ContextCompat.checkSelfPermission(activity.applicationContext,
+            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(activity.applicationContext,
+            Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun requestPermission() {
+        if (ContextCompat.checkSelfPermission(activity.applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getLocation()
+        }else{
+            ActivityCompat.requestPermissions(
+                activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+        }
+    }
+
+    // for get last location
+    fun isLocationEnabled(): Boolean {
+        val locationManager =
+            activity.application.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+    }
+
+
+
+
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             super.onLocationResult(locationResult)
@@ -89,12 +95,6 @@ class MyLocationProvider(private val activity: Activity) {
 
         }
     }
-
-    private var _locationList = MutableLiveData<ArrayList<Double>>()
-    val locationList = _locationList
-
-    private var _denyPermission = MutableLiveData<String>()
-    val denyPermission = _denyPermission
 
     private fun enableLocationSetting() {
         val settingIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)

@@ -14,14 +14,14 @@ import com.example.weatherapp.databinding.FirstTimeSettingsBinding
 import com.example.weatherapp.dialog.viewModel.DialogSettingViewModel
 import com.example.weatherapp.dialog.viewModel.DialogSettingViewModelFactory
 import com.example.weatherapp.homeScreen.view.HomeActivity
-import com.example.weatherapp.model.MyLocationProvider
+import com.example.weatherapp.model.WeatherLocationProvider
 import com.example.weatherapp.utility.getCurrentLocale
 import com.example.weatherapp.utility.getSharedPreferences
 
 class FirstTimeSettings : DialogFragment() {
     private var language: String? = null
     private val viewModel: DialogSettingViewModel by viewModels {
-        DialogSettingViewModelFactory(MyLocationProvider(this.requireActivity()))
+        DialogSettingViewModelFactory(WeatherLocationProvider(this.requireActivity()))
     }
     private var _binding: FirstTimeSettingsBinding? = null
     private val binding get() = _binding!!
