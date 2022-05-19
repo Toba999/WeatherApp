@@ -2,6 +2,7 @@ package com.example.weatherapp.alarmScreen.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.WorkManager
 import com.example.weatherapp.model.Repository
 import com.example.weatherapp.model.WeatherAlert
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,7 @@ class AlarmViewModel (private val repository: Repository) : ViewModel() {
     fun deleteAlert(id: Int) {
         viewModelScope.launch {
             repository.deleteAlert(id)
+            WorkManager.getInstance().cancelUniqueWork("$id")
         }
     }
 }

@@ -47,7 +47,8 @@ class MyPeriodicManager (private val context: Context, workerParams: WorkerParam
             }
         } else {
             repository.deleteAlert(id)
-            WorkManager.getInstance().cancelAllWorkByTag("$id")
+            WorkManager.getInstance().cancelUniqueWork("$id")
+
         }
     }
 
