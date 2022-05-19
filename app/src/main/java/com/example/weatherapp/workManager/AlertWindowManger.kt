@@ -23,8 +23,7 @@ class AlertWindowManger (
 
     fun setMyWindowManger() {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        customNotificationDialogView =
-            inflater.inflate(R.layout.alert_window_manger, null)
+        customNotificationDialogView = inflater.inflate(R.layout.alert_window_manger, null)
         binding = AlertWindowMangerBinding.bind(customNotificationDialogView!!)
         bindView()
         val LAYOUT_FLAG: Int

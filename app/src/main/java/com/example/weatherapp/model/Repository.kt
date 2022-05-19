@@ -8,7 +8,7 @@ import com.example.weatherapp.network.RemoteSource
 import com.example.weatherapp.network.RetrofitHelper
 import kotlinx.coroutines.flow.Flow
 
-class Repository(
+class Repository private constructor(
     private val weatherRemoteDataSource: RemoteSource, private val weatherLocalDataSource: LocalSource,
 ) : RepositoryInterface {
 
