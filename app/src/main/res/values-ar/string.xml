@@ -57,7 +57,7 @@
     <string name="from">إلي</string>
     <string name="time">الوقت</string>
     <string name="alarms">منبهات</string>
-    <string name="no_alerts_yet">لا ننبهات</string>
+    <string name="no_alerts_yet">لا تنبيهات</string>
     <string name="overlay_title">نحتاج إلي موافقتك</string>
     <string name="overlay_message">طلب إذن</string>
     <string name="overlay_postive_button">حسنا</string>
