@@ -10,10 +10,7 @@ import com.example.weatherapp.R
 import com.example.weatherapp.alarmScreen.viewModel.AlarmViewModel
 import com.example.weatherapp.databinding.AlarmRowBinding
 import com.example.weatherapp.model.WeatherAlert
-import com.example.weatherapp.utility.convertLongToDayDate
-import com.example.weatherapp.utility.convertLongToTime
-import com.example.weatherapp.utility.getCurrentLocale
-import com.example.weatherapp.utility.getSharedPreferences
+import com.example.weatherapp.utility.*
 
 class AlarmAdapter(private val context: Context, private val viewModel: AlarmViewModel) :
     RecyclerView.Adapter<AlarmAdapter.ViewHolder>() {
@@ -41,7 +38,7 @@ class AlarmAdapter(private val context: Context, private val viewModel: AlarmVie
 
         holder.binding.textTo.text = convertLongToDayDate(alert.endDate, language)
 
-        holder.binding.textTime.text = convertLongToTime(alert.time, language)
+        holder.binding.textTime.text = convertLongToTimePicker(alert.time, language)
     }
 
     override fun getItemCount(): Int {
