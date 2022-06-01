@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
                 val languageloc = com.example.weatherapp.utility.getSharedPreferences(this@MainActivity).getString(
                     getString(R.string.languageSetting), localLang?.language) ?: localLang?.language
                 setLocale(languageloc!!)
-                mySong=MediaPlayer.create(this@MainActivity,R.raw.splash_ring)
-                mySong?.start();
+                //mySong=MediaPlayer.create(this@MainActivity,R.raw.splash_ring)
+                //mySong?.start();
                 delay(5000)
                 startMainScreen()
             }
