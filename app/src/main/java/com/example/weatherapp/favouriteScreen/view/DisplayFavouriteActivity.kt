@@ -44,7 +44,7 @@ class DisplayFavouriteActivity : AppCompatActivity() {
     private var longitude: Double = 0.0
     private var language: String = "en"
     private var units: String = "metric"
-    private lateinit var dialog: Dialog
+    //private lateinit var dialog: Dialog
 
 
 
@@ -52,8 +52,8 @@ class DisplayFavouriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDisplayFavouriteActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dialog = ProgressDialog.setProgressDialog(this, "Loading..")
-        dialog.show()
+       // dialog = ProgressDialog.setProgressDialog(this, "Loading..")
+       // dialog.show()
 
         if(getCurrentTime() !in (morningTime + 1) until nightTime){
             binding.favParent.setBackgroundResource(R.drawable.night_sky)
@@ -137,13 +137,15 @@ class DisplayFavouriteActivity : AppCompatActivity() {
     }
 
     private fun setData(model: OpenWeatherApi) {
-        dialog.dismiss()
-        val weather = model.current.weather[0]
+        //dialog.dismiss()
+        val weather = model.current?.weather?.get(0)
         binding.apply {
             tvDateFav.text = convertCalenderToDayString(Calendar.getInstance(), language)
             tvDayFav.text =
                 convertLongToDayDate(Calendar.getInstance().timeInMillis, language)
-            tvStateFav.text = weather.description
+            if (weather != null) {
+                tvStateFav.text = weather.description
+            }
             tvCityFav.text = getCityText(this@DisplayFavouriteActivity, model.lat, model.lon, language)
             if (language == "ar") {
                 bindArabicUnits(model)
@@ -203,29 +205,36 @@ class DisplayFavouriteActivity : AppCompatActivity() {
     private fun bindArabicUnits(model: OpenWeatherApi) {
         binding.apply {
             tvTempFav.text =
-                convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
-            tvHuumidityFav.text = convertNumbersToArabic(model.current.humidity)
-                .plus("٪")
-            tvPressureFav.text = convertNumbersToArabic(model.current.pressure)
-                .plus(" هب")
-            tvCloudFav.text = convertNumbersToArabic(model.current.clouds)
-                .plus("٪")
-            tvUvFav.text = convertNumbersToArabic(model.current.uvi.toInt())
+                model.current?.temp?.toInt()
+                    ?.let { convertNumbersToArabic(it).plus(temperatureUnit) }
+            tvHuumidityFav.text = model.current?.let {
+                convertNumbersToArabic(it.humidity)
+                    .plus("٪")
+            }
+            tvPressureFav.text = model.current?.let {
+                convertNumbersToArabic(it.pressure)
+                    .plus(" هب")
+            }
+            tvCloudFav.text = model.current?.let {
+                convertNumbersToArabic(it.clouds)
+                    .plus("٪")
+            }
+            tvUvFav.text = model.current?.uvi?.let { convertNumbersToArabic(it.toInt()) }
             tvWindFav.text =
-                convertNumbersToArabic(model.current.windSpeed).plus(windSpeedUnit)
-            tvAppaTempFav.text= convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
+                model.current?.let { convertNumbersToArabic(it.windSpeed).plus(windSpeedUnit) }
+            tvAppaTempFav.text= model.current?.temp?.let { convertNumbersToArabic(it.toInt()).plus(temperatureUnit) }
         }
     }
 
     private fun bindEnglishUnits(model: OpenWeatherApi) {
         binding.apply {
-            tvAppaTempFav.text = model.current.temp.toInt().toString().plus(temperatureUnit)
-            tvTempFav.text = model.current.temp.toInt().toString().plus(temperatureUnit)
-            tvHuumidityFav.text = model.current.humidity.toString().plus("%")
-            tvPressureFav.text = model.current.pressure.toString().plus(" hPa")
-            tvCloudFav.text = model.current.clouds.toString().plus("%")
-            tvUvFav.text = model.current.uvi.toString()
-            tvWindFav.text = model.current.windSpeed.toString().plus(windSpeedUnit)
+            tvAppaTempFav.text = model.current?.temp?.toInt().toString().plus(temperatureUnit)
+            tvTempFav.text = model.current?.temp?.toInt().toString().plus(temperatureUnit)
+            tvHuumidityFav.text = model.current?.humidity.toString().plus("%")
+            tvPressureFav.text = model.current?.pressure.toString().plus(" hPa")
+            tvCloudFav.text = model.current?.clouds.toString().plus("%")
+            tvUvFav.text = model.current?.uvi.toString()
+            tvWindFav.text = model.current?.windSpeed.toString().plus(windSpeedUnit)
         }
     }
 }

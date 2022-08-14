@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     private var flagNoConnection: Boolean = false
     private lateinit var viewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
-    private lateinit var dialog: Dialog
+    //private lateinit var dialog: Dialog
 
 
 
@@ -52,8 +52,8 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
         super.onCreate(savedInstanceState)
         binding= ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dialog = ProgressDialog.setProgressDialog(this, "Loading..")
-        dialog.show()
+        //dialog = ProgressDialog.setProgressDialog(this, "Loading..")
+        //dialog.show()
 
         if(getCurrentTime() !in (morningTime + 1) until nightTime){
             binding.parentLayout.setBackgroundResource(R.drawable.night_sky)
@@ -203,13 +203,15 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     }
 
     private fun setData(model: OpenWeatherApi) {
-        dialog.dismiss()
-        val weather = model.current.weather[0]
+        //dialog.dismiss()
+        val weather = model.current?.weather?.get(0)
         binding.apply {
             tvDate.text = convertCalenderToDayString(Calendar.getInstance(), language)
             tvDay.text =
                 convertLongToDayDate(Calendar.getInstance().timeInMillis, language)
-            tvState.text = weather.description
+            if (weather != null) {
+                tvState.text = weather.description
+            }
             tvCity.text = getCityText(this@HomeActivity, model.lat, model.lon, language)
             if (language == "ar") {
                 bindArabicUnits(model)
@@ -305,29 +307,35 @@ class HomeActivity : AppCompatActivity(), ConnectivityChecker.ConnectivityReceiv
     private fun bindArabicUnits(model: OpenWeatherApi) {
         binding.apply {
             tvTemp.text =
-                convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
-            tvHuumidity.text = convertNumbersToArabic(model.current.humidity)
-                .plus("٪")
-            tvPressure.text = convertNumbersToArabic(model.current.pressure)
-                .plus(" هب")
-            tvCloud.text = convertNumbersToArabic(model.current.clouds)
-                .plus("٪")
-            tvUv.text = convertNumbersToArabic(model.current.uvi.toInt())
+                model.current?.temp?.let { convertNumbersToArabic(it.toInt()).plus(temperatureUnit) }
+            tvHuumidity.text = model.current?.let {
+                convertNumbersToArabic(it.humidity)
+                    .plus("٪")
+            }
+            tvPressure.text = model.current?.let {
+                convertNumbersToArabic(it.pressure)
+                    .plus(" هب")
+            }
+            tvCloud.text = model.current?.let {
+                convertNumbersToArabic(it.clouds)
+                    .plus("٪")
+            }
+            tvUv.text = model.current?.uvi?.let { convertNumbersToArabic(it.toInt()) }
             tvWind.text =
-                convertNumbersToArabic(model.current.windSpeed).plus(windSpeedUnit)
-            tvAppaTemp.text=convertNumbersToArabic(model.current.temp.toInt()).plus(temperatureUnit)
+                model.current?.let { convertNumbersToArabic(it.windSpeed).plus(windSpeedUnit) }
+            tvAppaTemp.text= model.current?.temp?.let { convertNumbersToArabic(it.toInt()).plus(temperatureUnit) }
         }
     }
 
     private fun bindEnglishUnits(model: OpenWeatherApi) {
         binding.apply {
-            tvAppaTemp.text = model.current.temp.toInt().toString().plus(temperatureUnit)
-            tvTemp.text = model.current.temp.toInt().toString().plus(temperatureUnit)
-            tvHuumidity.text = model.current.humidity.toString().plus("%")
-            tvPressure.text = model.current.pressure.toString().plus(" hPa")
-            tvCloud.text = model.current.clouds.toString().plus("%")
-            tvUv.text = model.current.uvi.toString()
-            tvWind.text = model.current.windSpeed.toString().plus(windSpeedUnit)
+            tvAppaTemp.text = model.current?.temp?.toInt().toString().plus(temperatureUnit)
+            tvTemp.text = model.current?.temp?.toInt().toString().plus(temperatureUnit)
+            tvHuumidity.text = model.current?.humidity.toString().plus("%")
+            tvPressure.text = model.current?.pressure.toString().plus(" hPa")
+            tvCloud.text = model.current?.clouds.toString().plus("%")
+            tvUv.text = model.current?.uvi.toString()
+            tvWind.text = model.current?.windSpeed.toString().plus(windSpeedUnit)
         }
     }
 

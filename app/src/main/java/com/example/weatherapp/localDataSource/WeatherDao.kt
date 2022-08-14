@@ -1,10 +1,8 @@
 package com.example.weatherapp.localDataSource
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
-import androidx.room.Update
 import com.example.weatherapp.model.OpenWeatherApi
 import com.example.weatherapp.model.WeatherAlert
 import kotlinx.coroutines.flow.Flow
@@ -18,8 +16,14 @@ interface WeatherDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertWeather(weather: OpenWeatherApi): Long
 
+    @Query("select * from weather")
+    fun getAllWeather(): LiveData<List<OpenWeatherApi>>
+
     @Update
     suspend fun updateWeather(weather: OpenWeatherApi)
+
+    @Delete
+    suspend fun deleteWeather(weather: OpenWeatherApi)
 
     @Query("DELETE FROM weather where isFavorite = 0")
     suspend fun deleteCurrentWeather()

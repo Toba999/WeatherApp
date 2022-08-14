@@ -31,19 +31,23 @@ class MyPeriodicManager (private val context: Context, workerParams: WorkerParam
             val delay: Long = getDelay(alert)
             if (currentWeather.alerts.isNullOrEmpty()) {
                 Log.e("MyPeriodicManager","isNullOrEmpty "+delay.toString())
-                setOneTimeWorkManger(
-                    delay,
-                    alert.id,
-                    currentWeather.current.weather[0].description,
-                    currentWeather.current.weather[0].icon
-                )
+                currentWeather.current?.weather?.get(0)?.let {
+                    setOneTimeWorkManger(
+                        delay,
+                        alert.id,
+                        it.description,
+                        currentWeather.current!!.weather[0].icon
+                    )
+                }
             } else {
-                setOneTimeWorkManger(
-                    delay,
-                    alert.id,
-                    currentWeather.alerts!![0].tags[0],
-                    currentWeather.current.weather[0].icon
-                )
+                currentWeather.current?.weather?.get(0)?.let {
+                    setOneTimeWorkManger(
+                        delay,
+                        alert.id,
+                        currentWeather.alerts!![0].tags[0],
+                        it.icon
+                    )
+                }
             }
         } else {
             repository.deleteAlert(id)

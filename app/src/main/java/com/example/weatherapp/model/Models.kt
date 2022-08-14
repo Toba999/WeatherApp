@@ -15,7 +15,7 @@ data class OpenWeatherApi(
     @SerializedName("lon") var lon: Double,
     @SerializedName("timezone") var timezone: String,
     @SerializedName("timezone_offset") var timezoneOffset: Int,
-    @SerializedName("current") var current: Current,
+    @SerializedName("current") var current: Current?,
     @SerializedName("hourly") var hourly: List<Hourly>,
     @SerializedName("daily") var daily: List<Daily>,
     @SerializedName("alerts") var alerts: List<Alerts>?
