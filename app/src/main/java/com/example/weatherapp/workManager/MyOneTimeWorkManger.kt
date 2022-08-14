@@ -71,7 +71,7 @@ class MyOneTimeWorkManger (private val context: Context, workerParams: WorkerPar
                 Notification.BigTextStyle()
                     .bigText(description)
             )
-            .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.packageName + "/" + R.raw.notif_ring))
+            //.setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + context.packageName + "/" + R.raw.notif_ring))
             .setAutoCancel(true)
         notificationManager?.notify(1234, builder.build())
 
@@ -86,7 +86,7 @@ class MyOneTimeWorkManger (private val context: Context, workerParams: WorkerPar
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                 .build()
             channel.enableVibration(true)
-            channel.setSound(sound, attributes)
+            //channel.setSound(sound, attributes)
             channel.description = channel_description
             notificationManager = context.getSystemService(NotificationManager::class.java)
             notificationManager?.createNotificationChannel(channel)
